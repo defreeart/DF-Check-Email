@@ -1,0 +1,270 @@
+/*
+
+1. CSS VARIABLES
+2. GLOBAL STYLES
+    2.1. GLOBAL STYLES: ELEMENTS
+3. SECTIONS
+    3.1. INTRO
+
+*/
+
+/* 1. CSS VARIABLES */
+/* ==================================== */
+
+:root {
+    /* SIZES */
+    --container-max-width: calc(25rem + (var(--container-padding)*2));
+    --icon-size: calc(var(--small-font-size)*var(--main-line-height));
+
+    /* MARGINS & PADDINGS */
+    --section-padding: 1rem;
+    --container-padding: 1rem;
+    --button-padding: 0.5em;
+    --main-margin: var(--container-padding);
+    --icon-padding: calc(var(--button-padding)*2 + var(--icon-size));
+
+    /* TRANSITIONS & ANIMATIONS */
+    --main-transition: .2s ease;
+
+    /* FONTS */
+    --main-font-family: Montserrat, sans-serif;
+    --main-font-size: 1.25rem;
+    --main-line-height: 1.5;
+    --big-font-size: calc(var(--main-font-size)*1.6);
+    --small-font-size: calc(var(--main-font-size)*0.9);
+
+    /* COLORS */
+    --white-color: rgb(255, 255, 255);
+    --main-bg-color: var(--white-color);
+    --main-text-color: rgb(26, 26, 26);
+    --main-accent-color: rgb(0, 170, 255);
+    --main-accent-light-color: rgb(51, 187, 255);
+}
+
+@media (max-width: 480px) {
+    :root {
+        --main-font-size: 1rem;
+    }
+}
+
+/* 2. GLOBAL STYLES */
+/* ==================================== */
+
+html {
+    box-sizing: border-box;
+    -webkit-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
+
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+*:focus {
+    outline: none;
+}
+
+body {
+    font-family: var(--main-font-family);
+    font-size: var(--main-font-size);
+    line-height: var(--main-line-height);
+    background-color: var(--main-bg-color);
+    color: var(--main-text-color);
+    min-width: 320px;
+    max-width: 1920px;
+    margin: 0 auto;
+}
+
+section {
+    padding: var(--section-padding);
+    background-color: var(--main-bg-color);
+}
+
+.container {
+    max-width: var(--container-max-width);
+    padding: var(--container-padding);
+    margin: 0 auto;
+}
+
+/* 2.1. GLOBAL STYLES: ELEMENTS */
+/* ==================================== */
+
+img {
+    border-style: none;
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+a {
+    background-color: transparent;
+    text-decoration: none;
+    color: var(--main-accent-color);
+}
+
+label {
+    display: block;
+}
+
+input,
+button {
+    display: block;
+    font-family: var(--main-font-family);
+    font-size: var(--small-font-size);
+    line-height: var(--main-line-height);
+    font-weight: 500;
+    border: none;
+}
+
+input {
+    min-width: 0;
+}
+
+button {
+    -webkit-appearance: button;
+    cursor: pointer;
+    background-color: var(--main-bg-color);
+    color: var(--main-text-color);
+    padding: var(--button-padding) calc(var(--button-padding)*2);
+}
+
+button::-moz-focus-inner {
+    border-style: none;
+}
+
+.object-fit {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* 3. SECTIONS */
+/* ==================================== */
+
+/* 3.1. INTRO */
+/* ==================================== */
+
+.intro {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
+    font-weight: 500;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), url('../images/beach.jpg');
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-blend-mode: luminosity;
+}
+
+.container.mod-intro {
+    background-color: var(--main-bg-color);
+    text-align: center;
+}
+
+.container.mod-intro > *:not(:last-child) {
+    margin-bottom: var(--main-margin);
+}
+
+.intro-image {
+    position: relative;
+    padding-bottom: calc(774/1159*100%);
+}
+
+.intro-image span {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    color: var(--white-color);
+    font-size: var(--big-font-size);
+    font-style: italic;
+    font-weight: normal;
+    padding: var(--container-padding);
+}
+
+.main-form {
+    display: flex;
+}
+
+.main-form-label {
+    flex: 1 1 auto;
+    position: relative;
+}
+
+.main-form-label::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: var(--button-padding);
+    width: var(--icon-size);
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.main-form-label.valid::after {
+    background-image: url('../images/check.svg');
+}
+
+.main-form-label.invalid::after {
+    background-image: url('../images/cancel.svg');
+}
+
+.main-form-input {
+    width: 100%;
+    color: var(--main-text-color);
+    border: solid rgba(0, 0, 0, 0.2);
+    border-width: 1px 0 1px 1px;
+    padding: var(--button-padding);
+    padding-right: var(--icon-padding);
+}
+
+.main-form-input::placeholder {
+    color: rgba(0, 0, 0, 0.4);
+}
+
+.main-form-input:focus::placeholder {
+    color: transparent;
+}
+
+.main-form-button {
+    background-color: var(--main-accent-color);
+    color: var(--white-color);
+    transition: var(--main-transition);
+    transition-property: background-color, box-shadow;
+}
+
+.main-form-button:hover,
+.main-form-button:focus {
+    background-color: var(--main-accent-light-color);
+}
+
+.main-form-button:active {
+    color: transparent;
+    text-shadow: 1px 1px var(--white-color);
+    box-shadow: inset 4px 4px 12px 0 rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 480px) {
+    .main-form {
+        display: block;
+    }
+
+    .main-form > * {
+        width: 100%;
+    }
+
+    .main-form-input {
+        text-align: center;
+        border-width: 1px 1px 0 1px;
+        padding-left: var(--icon-padding);
+    }
+}
